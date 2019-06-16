@@ -1,0 +1,19 @@
+{
+  "name": "@charlesstover/medium-stats-api",
+  "version": "1.0.0",
+  "author": "Charles Stover <medium-stats-api@charlesstover.com>",
+  "description": "An API for fetching Medium stats.",
+  "license": "MIT",
+  "main": "src/medium-stats.js",
+  "repository": "github:CharlesStover/medium-stats-api",
+  "private": true,
+  "scripts": {
+    "build": "docker build --file Dockerfile --tag charlesstover/medium-stats-api .",
+    "re": "yarn stop && yarn build && yarn start",
+    "start": "docker run --detach --env ACCESS_CONTROL_ALLOW_ORIGIN=http://local.host:3000 --name medium-stats-api --network reverse-proxy charlesstover/medium-stats-api",
+    "stop": "docker stop medium-stats-api && docker rm medium-stats-api"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
